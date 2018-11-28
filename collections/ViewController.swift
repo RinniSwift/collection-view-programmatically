@@ -97,24 +97,73 @@ class ViewController: UIViewController {
                 self.collectionView.deleteItems(at: [IndexPath(item: 0, section: 0)])
                 self.collectionView.deleteItems(at: [IndexPath(item: 1, section: 0)])
                 
-            }, completion: nil)
-            
-            self.collectionView.performBatchUpdates({
-                self.data.insert(100, at: self.data.endIndex)
-                self.data.insert(101, at: self.data.endIndex)
+                self.data.append(100)
+                self.data.append(101)
+                self.data.append(111)
+                self.collectionView.insertItems(at: [IndexPath(row: self.data.count - 1, section: 0)])
+                self.collectionView.insertItems(at: [IndexPath(row: self.data.count - 1, section: 0)])
+                self.collectionView.insertItems(at: [IndexPath(row: self.data.count - 1, section: 0)])
+                
             }, completion: nil)
         }))
         
         alert.addAction(UIAlertAction(title: "Insert 3 more at the end, delete first 2", style: .default, handler: { (_) in
+            self.collectionView.performBatchUpdates({
+                self.data.append(200)
+                self.data.append(202)
+                self.data.append(222)
+                self.collectionView.insertItems(at: [IndexPath(row: self.data.count - 1, section: 0)])
+                self.collectionView.insertItems(at: [IndexPath(row: self.data.count - 1, section: 0)])
+                self.collectionView.insertItems(at: [IndexPath(row: self.data.count - 1, section: 0)])
+                
+            }, completion: nil)
+            
+            self.collectionView.performBatchUpdates({
+                self.data.remove(at: 0)
+                self.data.remove(at: 1)
+                self.collectionView.deleteItems(at: [IndexPath(item: 0, section: 0)])
+                self.collectionView.deleteItems(at: [IndexPath(item: 1, section: 0)])
+            }, completion: nil)
         }))
         
         alert.addAction(UIAlertAction(title: "Delete 3 at the beginning, insert 1 at the beginning", style: .default, handler: { (_) in
+            self.collectionView.performBatchUpdates({
+                self.data.remove(at: 0)
+                self.data.remove(at: 1)
+                self.data.remove(at: 2)
+                self.collectionView.deleteItems(at: [IndexPath(item: 0, section: 0)])
+                self.collectionView.deleteItems(at: [IndexPath(item: 1, section: 0)])
+                self.collectionView.deleteItems(at: [IndexPath(item: 2, section: 0)])
+                
+                self.data.insert(1000, at: 0)
+                self.collectionView.insertItems(at: [IndexPath(row: 0, section: 0)])
+            }, completion: nil)
         }))
         
         alert.addAction(UIAlertAction(title: "Delete 3 at the beginning, insert 1 at end", style: .default, handler: { (_) in
+            self.collectionView.performBatchUpdates({
+                self.data.remove(at: 0)
+                self.data.remove(at: 1)
+                self.data.remove(at: 2)
+                self.collectionView.deleteItems(at: [IndexPath(item: 0, section: 0)])
+                self.collectionView.deleteItems(at: [IndexPath(item: 1, section: 0)])
+                self.collectionView.deleteItems(at: [IndexPath(item: 2, section: 0)])
+                
+                self.data.append(2000)
+                self.collectionView.insertItems(at: [IndexPath(row: self.data.count - 1, section: 0)])
+            }, completion: nil)
+            
         }))
         
         alert.addAction(UIAlertAction(title: "Insert 3 at the beginning, delete the first one", style: .default, handler: { (_) in
+            self.collectionView.performBatchUpdates({
+                self.data.remove(at: 0)
+                self.collectionView.deleteItems(at: [IndexPath(row: 0, section: 0)])
+                
+                self.data.insert(3, at: 0)
+                self.collectionView.reloadItems(at: [IndexPath(index: 0)])
+                
+            }, completion: nil)
         }))
         
         alert.addAction(UIAlertAction(title: "Reset", style: .default, handler: { (_) in
