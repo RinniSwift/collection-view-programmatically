@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         collectionView.backgroundColor = .white
         
         //Registering the cell
-        collectionView.register(Cell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.register(Cell.self, forCellWithReuseIdentifier: "cell")
         
         return collectionView
     }()
@@ -78,7 +78,8 @@ class ViewController: UIViewController {
             self.collectionView.performBatchUpdates({
                 
                 self.data.insert(3, at: 0)
-                self.collectionView.reloadItems(at: [IndexPath(index: 0)])
+                self.collectionView.insertItems(at: [IndexPath(item: 0, section: 0)])
+                
                 
             }, completion: nil)
         }))
