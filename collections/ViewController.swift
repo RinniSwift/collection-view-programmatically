@@ -74,6 +74,15 @@ class ViewController: UIViewController {
         
         }))
         
+        alert.addAction(UIAlertAction(title: "add in the middle of list", style: .default, handler: { (_) in
+            self.collectionView.performBatchUpdates({
+                let middleOfArray = self.data.count / 2
+                self.data.insert(999, at: middleOfArray)
+                self.collectionView.insertItems(at: [IndexPath(item: middleOfArray, section: 0)])
+                
+            }, completion: nil)
+        }))
+        
         alert.addAction(UIAlertAction(title: "Insert 3 at the beginning", style: .default, handler: { (_) in
             self.collectionView.performBatchUpdates({
                 

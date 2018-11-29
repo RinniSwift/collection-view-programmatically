@@ -10,7 +10,7 @@ import UIKit
 
 class Cell: UICollectionViewCell {
     
-    static var identifier: String = "Cell"
+    static var identifier: String = "cell"
     
     var textLabel: UILabel!
     
